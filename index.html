@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+</head>
+<body>
+    <h1>Music Player</h1>
+    <script>
+        function Player() {
+            this.playList = [];
+            this.trackNumber = 0;
+        }
+
+        const player = new Player();
+
+        Player.prototype.add = function(track) {
+            this.playList.push(track);
+        }
+        
+        Player.prototype.play = function() {
+            console.log(`Playing: ${this.playList[this.trackNumber]['title']} by ${this.playList[this.trackNumber]['artist']}`);
+        }
+
+        Player.prototype.next = function() {
+            if (this.trackNumber < this.playList.length - 1) {
+                this.trackNumber++;
+            } else if (this.trackNumber === this.playList.length - 1) {
+                this.trackNumber = 0;
+            }
+        }
+
+        Player.prototype.previous = function() {
+            if (this.trackNumber > 0) {
+                this.trackNumber--;
+            } else if (this.trackNumber === 0) {
+                this.trackNumber = this.playList.length - 1;
+            }
+        }
+
+        function Track(artist, title, name) {
+            this.artist = artist;
+            this.title = title;
+            this.name = name;
+        }
+
+        const driveTrack = new Track('Incubus', 'Drive', 'Make Yourself');
+        const laBambaTrack = new Track('Ritchie Valens', 'La Bamba', 'La Bamba');
+
+    </script>
+</body>
+</html>
